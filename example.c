@@ -1,30 +1,27 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main(void)
 {
-    int grade[5];
-    int *ptr = grade;
-    int sum = 0;
-    int i;
+    char chars[2];
+    int ints[2];
+    double doubles[2];
 
-    for (i = 0; i < 5; i++) {
-        printf("grade[%d] = ", i);
-        fflush(stdout);
+    char *pc = chars;
+    int *pi = ints;
+    double *pd = doubles;
 
-        if (scanf("%d", &grade[i]) != 1) {
-            printf("Please enter an integer.\n");
-            return 1;
-        }
-    }
+    printf("Before: pc=%p, pi=%p, pd=%p\n",
+           (void *)pc, (void *)pi, (void *)pd);
 
-    printf("Scores:");
-    for (i = 0; i < 5; i++) {
-        printf(" %d", *(ptr + i));
-        sum += *(ptr + i);
-    }
+    pc++;
+    pi++;
+    pd++;
 
-    printf("\nAverage: %.2f\n", sum / 5.0);
+    printf("After:  pc=%p, pi=%p, pd=%p\n",
+           (void *)pc, (void *)pi, (void *)pd);
+
+    printf("Bytes per step: char=%zu, int=%zu, double=%zu\n",
+           sizeof(*pc), sizeof(*pi), sizeof(*pd));
 
     return 0;
 }
