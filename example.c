@@ -1,29 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-
-void swap_value(int x, int y)
-{
-    int temp = x;
-    x = y;
-    y = temp;
-}
-
-void swap_pointer(int *x, int *y)
-{
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
 
 int main(void)
 {
-    int a = 3;
-    int b = 5;
+    int grade[5];
+    int *ptr = grade;
+    int sum = 0;
+    int i;
 
-    swap_value(a, b);
-    printf("After swap_value:   a=%d, b=%d\n", a, b);
+    for (i = 0; i < 5; i++) {
+        printf("grade[%d] = ", i);
+        fflush(stdout);
 
-    swap_pointer(&a, &b);
-    printf("After swap_pointer: a=%d, b=%d\n", a, b);
+        if (scanf("%d", &grade[i]) != 1) {
+            printf("Please enter an integer.\n");
+            return 1;
+        }
+    }
+
+    printf("Scores:");
+    for (i = 0; i < 5; i++) {
+        printf(" %d", *(ptr + i));
+        sum += *(ptr + i);
+    }
+
+    printf("\nAverage: %.2f\n", sum / 5.0);
 
     return 0;
 }
